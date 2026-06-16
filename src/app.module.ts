@@ -8,6 +8,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { ProductImagesModule } from './product-images/product-images.module';
 import { FavoritesModule } from './favorites/favorites.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { FavoritesModule } from './favorites/favorites.module';
     CategoriesModule,
     ProductsModule,
     ProductImagesModule,
-    FavoritesModule
+    FavoritesModule,
+    ReviewsModule
   ],
   controllers: [AppController],
   providers: [AppService],
