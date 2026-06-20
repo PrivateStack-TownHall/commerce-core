@@ -15,7 +15,19 @@ function AppSidebar() {
   const [openApplications, setOpenApplications] = useState(true);
 
   return (
-    <aside
+    <motion.aside
+      initial={{
+        opacity: 0,
+        x: -40,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+      }}
+      transition={{
+        duration: 0.5,
+        ease: "easeOut",
+      }}
       className="
         m-4
         flex
@@ -39,11 +51,22 @@ function AppSidebar() {
           src={sidebarLogo}
           alt="Commerce Core"
           className="mx-auto w-full object-contain"
+          initial={{
+            opacity: 0,
+            y: -20,
+            scale: 0.95,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
           whileHover={{
-            scale: 1.03,
+            scale: 1.04,
+            rotate: -1,
           }}
           transition={{
-            duration: 0.2,
+            duration: 0.4,
           }}
         />
       </div>
@@ -233,18 +256,6 @@ function AppSidebar() {
         </div>
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            delay: 0.4,
-            duration: 0.5,
-          }}
           className="
             border-t
             border-slate-200/60
@@ -255,45 +266,90 @@ function AppSidebar() {
             src={hqStudioBuilding}
             alt="Headquarter Studio"
             className="
-              mx-auto
-              h-auto
-              w-24
-              object-contain
-            "
+    mx-auto
+    h-auto
+    w-24
+    object-contain
+  "
+            initial={{
+              opacity: 0,
+              scale: 0.8,
+            }}
             animate={{
-              y: [0, -4, 0],
+              opacity: 1,
+              scale: 1,
+              y: [0, -6, 0],
+            }}
+            whileHover={{
+              scale: 1.08,
+              y: -4,
             }}
             transition={{
-              duration: 4,
-              //   repeat: Infinity,
-              ease: "easeInOut",
+              opacity: {
+                duration: 0.4,
+                delay: 0.3,
+              },
+              scale: {
+                duration: 0.4,
+                delay: 0.3,
+              },
+              y: {
+                duration: 3,
+                ease: "easeInOut",
+              },
             }}
           />
 
-          <div className="mt-1 text-center">
-            <h3
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 8,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.5,
+              duration: 0.4,
+            }}
+            className="mt-2 text-center"
+          >
+            <motion.h3
               className="
-                text-xs
-                font-semibold
-                text-slate-800
-              "
+      text-xs
+      font-semibold
+      text-slate-800
+    "
+              whileHover={{
+                scale: 1.03,
+              }}
             >
               Headquarter Studio
-            </h3>
+            </motion.h3>
 
-            <p
+            <motion.p
               className="
-                mt-1
-                text-xs
-                text-slate-500
-              "
+      mt-1
+      text-[11px]
+      text-slate-500
+    "
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              transition={{
+                delay: 0.7,
+              }}
             >
               Commerce Core Analytics Command Centre
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </motion.div>
       </div>
-    </aside>
+    </motion.aside>
   );
 }
 

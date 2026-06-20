@@ -1,6 +1,6 @@
 import {
   Activity,
-  LayoutDashboard,
+  Radar,
   LayoutGrid,
   MessageSquareText,
   ShoppingBag,
@@ -138,10 +138,10 @@ export const APPLICATIONS: Application[] = [
 
 export const SIDEBAR_MENU: SidebarMenu[] = [
   {
-    name: "Dashboard",
+    name: "Command Centre",
     path: "/",
     color: "#2563EB",
-    icon: LayoutDashboard,
+    icon: Radar,
   },
 
   {

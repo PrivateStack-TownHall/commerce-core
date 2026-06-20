@@ -1,7 +1,9 @@
-import { Moon, Sun, Map, Activity } from "lucide-react";
+import { Moon, Map } from "lucide-react";
 
 import { motion } from "framer-motion";
 import { APPLICATIONS } from "@/lib/constants";
+
+import ecosystemMapButton from "@/assets/images/ecosystem-map-button.png";
 
 function AppHeader() {
   return (
@@ -70,47 +72,111 @@ function AppHeader() {
       {/* RIGHT */}
       <div className="flex items-center gap-3">
         <motion.button
-          whileHover={{
-            rotate: 15,
-            scale: 1.05,
-          }}
           whileTap={{
             scale: 0.95,
           }}
           className="
-            rounded-md
-            bg-blue-50
-            p-2.5
-            text-blue-700
-            transition-all
-          "
+    relative
+
+    flex
+    h-10
+    w-20
+
+    items-center
+
+    rounded-full
+
+    bg-slate-200
+
+    p-1
+  "
         >
-          <Moon size={18} />
+          <motion.div
+            layout
+            className="
+      flex
+      h-8
+      w-8
+
+      items-center
+      justify-center
+
+      rounded-full
+
+      bg-white
+
+      shadow-md
+    "
+          >
+            <Moon size={16} />
+          </motion.div>
         </motion.button>
         <motion.button
           whileHover={{
-            scale: 1.05,
+            scale: 1.03,
+            y: -2,
           }}
           whileTap={{
-            scale: 0.95,
+            scale: 0.98,
           }}
           className="
-            flex
-            items-center
-            gap-2
-            rounded-md
-            bg-amber-50
-            px-4
-            py-2
-            text-sm
-            font-medium
-            text-amber-700
-            transition-all
-          "
-        >
-          <Map size={16} />
+    group
 
-          <span>Ecosystem View</span>
+    relative
+
+    overflow-hidden
+
+    rounded-xl
+
+    border
+
+    border-blue-200
+
+    bg-white
+
+    shadow-md
+  "
+        >
+          <img
+            src={ecosystemMapButton}
+            alt="Ecosystem Map"
+            className="
+      h-16
+      w-44
+      object-cover
+      transition-transform
+      duration-500
+      group-hover:scale-110
+    "
+          />
+
+          <div
+            className="
+      absolute
+      inset-0
+
+      bg-gradient-to-r
+      from-blue-900/70
+      to-transparent
+    "
+          />
+
+          <div className="absolute left-3 top-1/2 -translate-y-1/2">
+            <p className="text-xs font-medium text-white/80">Interactive</p>
+
+            <h3 className="text-sm font-bold text-white">Ecosystem Map</h3>
+          </div>
+
+          <motion.div
+            animate={{
+              opacity: [0.4, 1, 0.4],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+            className="absolute right-3 top-3 h-2 w-2 rounded-full bg-green-400"
+          />
         </motion.button>
       </div>
     </motion.header>
