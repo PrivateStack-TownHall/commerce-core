@@ -46,7 +46,7 @@ export class ReviewsController {
   @ApiOperation({
     summary: 'Get Reviews',
     description:
-      'Retrieve all product reviews',
+      'Retrieve all coffee reviews',
   })
   @SwaggerSuccess({
     data: [
@@ -68,9 +68,9 @@ export class ReviewsController {
   @Get('product/:productId')
   @ApiOperation({
     summary:
-      'Get Reviews By Product',
+      'Get Reviews By Coffee',
     description:
-      'Retrieve reviews by product id',
+      'Retrieve reviews by coffee id',
   })
   @SwaggerSuccess({
     data: [
@@ -84,7 +84,7 @@ export class ReviewsController {
     ],
   })
   @SwaggerNotFound(
-    'Product not found',
+    'Coffee not found',
   )
   findByProduct(
     @Param(
@@ -104,7 +104,7 @@ export class ReviewsController {
   @ApiOperation({
     summary: 'Create Review',
     description:
-      'Create review for product',
+      'Create review for coffee',
   })
   @ApiBody({
     type: CreateReviewDto,

@@ -30,6 +30,9 @@ export class CategoriesService {
 
    async findAll() {
       return this.prisma.category.findMany({
+         where: {
+            appType: AppType.COFFEE,
+         },
          orderBy: {
             id: 'desc',
          },
@@ -41,6 +44,7 @@ export class CategoriesService {
          await this.prisma.category.findUnique({
             where: {
                id,
+               appType: AppType.COFFEE,
             },
          });
 
@@ -62,6 +66,7 @@ export class CategoriesService {
       return this.prisma.category.update({
          where: {
             id,
+            appType: AppType.COFFEE,
          },
          data: dto,
       });

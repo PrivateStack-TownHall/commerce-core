@@ -16,6 +16,8 @@ enum AppType {
   COFFEE
   RESTAURANT
   ECOMMERCE
+  BURGER
+  MART
 }
 
 enum OrderStatus {

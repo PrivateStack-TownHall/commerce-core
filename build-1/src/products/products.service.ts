@@ -36,7 +36,7 @@ export class ProductsService {
          });
 
       return {
-         message: 'Product created successfully',
+         message: 'Coffee created successfully',
          data: {
             ...product,
             price: Number(product.price),
@@ -50,7 +50,7 @@ export class ProductsService {
 
       const skip = (page - 1) * limit;
 
-      const where: any = {};
+      const where: any = {appType: AppType.COFFEE};
       const orderBy: any = {};
 
       if (query.search) {
@@ -117,6 +117,7 @@ export class ProductsService {
          await this.prisma.product.findUnique({
             where: {
                id,
+               appType: AppType.COFFEE
             },
 
             include: {
@@ -127,7 +128,7 @@ export class ProductsService {
 
       if (!product) {
          throw new NotFoundException(
-            'Product not found',
+            'Coffee not found',
          );
       }
 
@@ -149,6 +150,7 @@ export class ProductsService {
          await this.prisma.product.update({
             where: {
                id,
+               appType: AppType.COFFEE
             },
             data: dto,
 
@@ -159,7 +161,7 @@ export class ProductsService {
          });
 
       return {
-         message: 'Product updated successfully',
+         message: 'Coffee updated successfully',
          data: {
             ...product,
             price: Number(product.price),
@@ -173,11 +175,12 @@ export class ProductsService {
       await this.prisma.product.delete({
          where: {
             id,
+            
          },
       });
 
       return {
-         message: 'Product deleted successfully',
+         message: 'Coffee deleted successfully',
       };
    }
 }

@@ -1038,7 +1038,7 @@
 
 "@nestjs/swagger@^11.4.4":
   version "11.4.4"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-11.4.4.tgz#8c7cd2c2ed882bb3bafea04f03807c6720aa678e"
+  resolved "https://registry.npmjs.org/@nestjs/swagger/-/swagger-11.4.4.tgz"
   integrity sha512-VaIo1ruV2G7b+f2zPzkBSUNy9a/WQ9sg8TLKhWlrTfg4O6U10M/PA7Xi6XMXadOVhwOqoesijba8jH3i/3adrA==
   dependencies:
     "@microsoft/tsdoc" "0.16.0"
@@ -5031,7 +5031,7 @@ swagger-ui-dist@5.32.6, swagger-ui-dist@>=5.0.0:
 
 swagger-ui-express@^5.0.1:
   version "5.0.1"
-  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-5.0.1.tgz#fb8c1b781d2793a6bd2f8a205a3f4bd6fa020dd8"
+  resolved "https://registry.npmjs.org/swagger-ui-express/-/swagger-ui-express-5.0.1.tgz"
   integrity sha512-SrNU3RiBGTLLmFU8GIJdOdanJTl4TOmT27tt3bWWHppqYmAZ6IDuEuBvMU6nZq0zLEe6b/1rACXCgLZqO6ZfrA==
   dependencies:
     swagger-ui-dist ">=5.0.0"
