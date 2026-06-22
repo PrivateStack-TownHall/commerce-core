@@ -1,10 +1,13 @@
 import "../styles/App.css";
+import Providers from "./Providers";
 import Router from "./Router";
 
 function App() {
   return (
     <>
-      <Router></Router>
+      <Providers>
+        <Router></Router>
+      </Providers>
     </>
   );
 }
