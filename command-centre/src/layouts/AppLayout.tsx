@@ -1,22 +1,18 @@
 import { Outlet, useLocation } from "react-router-dom";
 
-import { AnimatePresence } from "framer-motion";
-
-import AppShell from "@/components/shared/AppShell";
-import AppHeader from "@/components/shared/AppHeader";
-import AppSidebar from "@/components/shared/AppSidebar";
-import PageTransition from "@/components/shared/PageTransition";
+import AppShell from "@/components/shared/app/AppShell";
+import AppHeader from "@/components/shared/app/AppHeader";
+import AppSidebar from "@/components/shared/app/AppSidebar";
+import PageTransition from "@/components/shared/page/PageTransition";
 
 export default function AppLayout() {
   const location = useLocation();
 
   return (
     <AppShell sidebar={<AppSidebar />} header={<AppHeader />}>
-      <AnimatePresence mode="wait">
-        <PageTransition key={location.pathname}>
-          <Outlet />
-        </PageTransition>
-      </AnimatePresence>
+      <PageTransition key={location.pathname}>
+        <Outlet />
+      </PageTransition>
     </AppShell>
   );
 }
