@@ -20,12 +20,11 @@ function PageHeader({ title, description, badge }: PageHeaderProps) {
       transition={{
         duration: 0.25,
       }}
-      className="mb-8"
     >
       <div className="flex flex-wrap items-center gap-3">
         <h1
           className="
-            text-3xl
+            text-2xl
             font-bold
             tracking-tight
 
@@ -44,25 +43,21 @@ function PageHeader({ title, description, badge }: PageHeaderProps) {
         {badge && (
           <span
             className="
-              rounded-full
-
+              rounded-md
               bg-blue-100
-
               px-3
               py-1
-
               text-xs
               font-semibold
-
               text-blue-700
             "
           >
-            {badge}
+            {description}
           </span>
         )}
       </div>
 
-      {description && (
+      {/* {description && (
         <p
           className="
             mt-2
@@ -74,7 +69,7 @@ function PageHeader({ title, description, badge }: PageHeaderProps) {
         >
           {description}
         </p>
-      )}
+      )} */}
     </motion.div>
   );
 }

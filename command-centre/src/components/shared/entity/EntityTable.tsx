@@ -1,6 +1,6 @@
 import type { ColumnDef } from "@tanstack/react-table";
 
-import DataTableWrapper from "./DataTableWrapper";
+import DataTableWrapper from "./DataTable/DataTableWrapper";
 
 interface EntityTableProps<TData> {
   columns: ColumnDef<TData>[];

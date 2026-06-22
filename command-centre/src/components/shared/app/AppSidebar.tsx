@@ -44,7 +44,7 @@ function AppSidebar() {
       "
     >
       <div
-        className="px-6 pt-8 pb-6 border-b
+        className="p-5 border-b
             border-slate-200/60"
       >
         <motion.img

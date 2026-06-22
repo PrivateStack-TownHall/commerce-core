@@ -19,14 +19,7 @@ function AppHeader() {
       transition={{
         duration: 0.3,
       }}
-      className="
-        flex
-        items-center
-        justify-between
-        border
-        border-white/50
-        bg-white/80
-      "
+      className="flex items-center justify-between border-b border-slate-200/60 bg-white/80 p-3"
     >
       {/* LEFT */}
       <div className="flex flex-col gap-2">
@@ -48,15 +41,7 @@ function AppHeader() {
               whileTap={{
                 scale: 0.97,
               }}
-              className="
-          shrink-0
-          rounded-md
-          px-2
-          py-1
-          text-xs
-          font-medium
-          transition-all
-        "
+              className="shrink-0 rounded-md px-2 py-1 text-xs font-medium transition-all"
               style={{
                 backgroundColor: `${app.color}20`,
                 color: app.color,
@@ -75,38 +60,11 @@ function AppHeader() {
           whileTap={{
             scale: 0.95,
           }}
-          className="
-    relative
-
-    flex
-    h-10
-    w-20
-
-    items-center
-
-    rounded-full
-
-    bg-slate-200
-
-    p-1
-  "
+          className="relative flex h-10 w-20 items-center rounded-full bg-slate-200 p-1"
         >
           <motion.div
             layout
-            className="
-      flex
-      h-8
-      w-8
-
-      items-center
-      justify-center
-
-      rounded-full
-
-      bg-white
-
-      shadow-md
-    "
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-white shadow-md"
           >
             <Moon size={16} />
           </motion.div>
@@ -119,47 +77,15 @@ function AppHeader() {
           whileTap={{
             scale: 0.98,
           }}
-          className="
-    group
-
-    relative
-
-    overflow-hidden
-
-    rounded-xl
-
-    border
-
-    border-blue-200
-
-    bg-white
-
-    shadow-md
-  "
+          className="group relative overflow-hidden rounded-xl border border-blue-200 bg-white shadow-md"
         >
           <img
             src={ecosystemMapButton}
             alt="Ecosystem Map"
-            className="
-      h-16
-      w-44
-      object-cover
-      transition-transform
-      duration-500
-      group-hover:scale-110
-    "
+            className="h-16 w-44 object-cover transition-transform duration-500 group-hover:scale-110"
           />
 
-          <div
-            className="
-      absolute
-      inset-0
-
-      bg-gradient-to-r
-      from-blue-900/70
-      to-transparent
-    "
-          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-transparent" />
 
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
             <p className="text-xs font-medium text-white/80">Interactive</p>
