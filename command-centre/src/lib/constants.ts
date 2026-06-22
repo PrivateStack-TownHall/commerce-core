@@ -33,7 +33,8 @@ export const APPLICATIONS: Application[] = [
     color: "#8B5E3C",
     description: "Coffee Ordering Platform",
     path: "/applications/kings-brew",
-    url: "https://kings-brew.onrender.com",
+    // url: "https://kings-brew.onrender.com",
+    url: "http://localhost:3000",
   },
 
   {
@@ -138,17 +139,16 @@ export const APPLICATIONS: Application[] = [
 
 export const SIDEBAR_MENU: SidebarMenu[] = [
   {
-    name: "Command Centre",
-    path: "/",
-    color: "#2563EB",
-    icon: Radar,
-  },
-
-  {
     name: "Applications",
     path: "/applications",
     color: "#F59E0B",
     icon: LayoutGrid,
+  },
+  {
+    name: "Command Centre",
+    path: "/",
+    color: "#2563EB",
+    icon: Radar,
   },
 
   {
