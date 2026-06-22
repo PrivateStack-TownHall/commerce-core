@@ -1,73 +1,246 @@
-# React + TypeScript + Vite
+# Command Centre
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Centralized monitoring dashboard for the Entrepreneur Topics Ecosystem.
 
-Currently, two official plugins are available:
+![Command Centre Banner](./assets/images/banner.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Overview
 
-## React Compiler
+Command Centre is an enterprise-style administration dashboard used to monitor and manage all applications within the Entrepreneur Topics Ecosystem from a single interface.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The platform aggregates data from multiple applications and provides a unified experience for viewing:
 
-## Expanding the ESLint configuration
+* Products
+* Categories
+* Images
+* Reviews
+* Orders (Coming Soon)
+* Monitoring Metrics (Coming Soon)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Applications
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### ☕ Kings Brew
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Coffee Ordering Platform
+
+### 🥩 Castle Kitchen
+
+Steak & Restaurant Ordering Platform
+
+### 🍔 Byte Burger
+
+Food Ordering Platform
+
+### 🛒 Quantum Mart
+
+E-Commerce Platform
+
+### 🏪 Trade Hub
+
+Marketplace Platform
+
+### 🍍 Pineapple Stack
+
+Community Forum & Discussion Platform
+
+### 👨‍💼 M-ployee
+
+Employee Information System
+
+### 📸 Codigram
+
+Social Media Platform
+
+### 🏡 Medieval Airbnb
+
+Property Booking Platform
+
+### 📚 Leather Shelf
+
+Library Management Platform
+
+---
+
+## Features
+
+### Enterprise Dashboard
+
+* Application Overview
+* Centralized Monitoring
+* Cross-Platform Management
+* Unified Design System
+
+### Product Management
+
+* Search
+* Sorting
+* Filtering
+* Pagination
+* Category Management
+* Product Images
+
+### Review Management
+
+* Customer Feedback
+* Product Reviews
+* Rating Visualization
+
+### Image Management
+
+* Product Image Gallery
+* Asset Preview
+* Image Sorting
+
+---
+
+## Technology Stack
+
+### Frontend
+
+* React 19
+* TypeScript
+* Vite
+* Tailwind CSS
+* Shadcn UI
+* TanStack Table
+* TanStack Query
+* React Router
+
+### State & Data
+
+* TanStack Query
+* Axios
+
+### UI Components
+
+* Lucide React
+* Radix UI
+* Framer Motion
+
+---
+
+## Project Structure
+
+```bash
+src/
+│
+├── components/
+│   ├── data-table/
+│   ├── shared/
+│   └── ui/
+│
+├── features/
+│   └── applications/
+│       ├── api/
+│       ├── columns/
+│       ├── components/
+│       ├── config/
+│       ├── hooks/
+│       ├── pages/
+│       ├── tabs/
+│       └── types/
+│
+├── lib/
+├── routes/
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Installation
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Clone Repository
+
+```bash
+git clone <repository-url>
 ```
+
+### Install Dependencies
+
+```bash
+yarn install
+```
+
+### Start Development Server
+
+```bash
+yarn dev
+```
+
+### Build Production
+
+```bash
+yarn build
+```
+
+### Preview Production Build
+
+```bash
+yarn preview
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file:
+
+```env
+VITE_APP_NAME=Command Centre
+```
+
+---
+
+## Design Principles
+
+The dashboard follows enterprise software patterns inspired by:
+
+* Stripe Dashboard
+* Shopify Admin
+* GitHub Enterprise
+* Vercel Dashboard
+* Linear
+
+Core principles:
+
+* Simplicity
+* Consistency
+* Scalability
+* Performance
+* Data-First Design
+
+---
+
+## Current Status
+
+### Completed
+
+* Application Management
+* Products Management
+* Categories Management
+* Images Management
+* Reviews Management
+* Search
+* Filtering
+* Sorting
+* Pagination
+* Responsive Layout
+
+### In Progress
+
+* Orders Management
+* Monitoring Dashboard
+* Analytics
+* Notifications
+
+---
+
+## License
+
+MIT License
+
+---
+
+Built with ❤️ by Vincent Guizot
