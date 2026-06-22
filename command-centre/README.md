@@ -2,7 +2,7 @@
 
 Centralized monitoring dashboard for the Entrepreneur Topics Ecosystem.
 
-![Command Centre Banner](./assets/images/banner.png)
+![Command Centre Banner](./src/assets/images/banner.png)
 
 ## Overview
 
@@ -10,56 +10,28 @@ Command Centre is an enterprise-style administration dashboard used to monitor a
 
 The platform aggregates data from multiple applications and provides a unified experience for viewing:
 
-* Products
-* Categories
-* Images
-* Reviews
-* Orders (Coming Soon)
-* Monitoring Metrics (Coming Soon)
+- Products
+- Categories
+- Images
+- Reviews
+- Monitoring Metrics
 
 ---
 
 ## Applications
 
-### ☕ Kings Brew
-
-Coffee Ordering Platform
-
-### 🥩 Castle Kitchen
-
-Steak & Restaurant Ordering Platform
-
-### 🍔 Byte Burger
-
-Food Ordering Platform
-
-### 🛒 Quantum Mart
-
-E-Commerce Platform
-
-### 🏪 Trade Hub
-
-Marketplace Platform
-
-### 🍍 Pineapple Stack
-
-Community Forum & Discussion Platform
-
-### 👨‍💼 M-ployee
-
-Employee Information System
-
-### 📸 Codigram
-
-Social Media Platform
-
-### 🏡 Medieval Airbnb
-
-Property Booking Platform
-
-### 📚 Leather Shelf
-
-Library Management Platform
+| Application        | Description                           |
+| ------------------ | ------------------------------------- |
+| ☕ Kings Brew      | Coffee Ordering Platform              |
+| 🥩 Castle Kitchen  | Steak & Restaurant Ordering Platform  |
+| 🍔 Byte Burger     | Food Ordering Platform                |
+| 🛒 Quantum Mart    | E-Commerce Platform                   |
+| 🏪 Trade Hub       | Marketplace Platform                  |
+| 🍍 Pineapple Stack | Community Forum & Discussion Platform |
+| 👨‍💼 M-ployee        | Employee Information System           |
+| 📸 Codigram        | Social Media Platform                 |
+| 🏡 Medieval Airbnb | Property Booking Platform             |
+| 📚 Leather Shelf   | Library Management Platform           |
 
 ---
 
@@ -67,31 +39,31 @@ Library Management Platform
 
 ### Enterprise Dashboard
 
-* Application Overview
-* Centralized Monitoring
-* Cross-Platform Management
-* Unified Design System
+- Application Overview
+- Centralized Monitoring
+- Cross-Platform Management
+- Unified Design System
 
 ### Product Management
 
-* Search
-* Sorting
-* Filtering
-* Pagination
-* Category Management
-* Product Images
+- Search
+- Sorting
+- Filtering
+- Pagination
+- Category Management
+- Product Images
 
 ### Review Management
 
-* Customer Feedback
-* Product Reviews
-* Rating Visualization
+- Customer Feedback
+- Product Reviews
+- Rating Visualization
 
 ### Image Management
 
-* Product Image Gallery
-* Asset Preview
-* Image Sorting
+- Product Image Gallery
+- Asset Preview
+- Image Sorting
 
 ---
 
@@ -99,25 +71,25 @@ Library Management Platform
 
 ### Frontend
 
-* React 19
-* TypeScript
-* Vite
-* Tailwind CSS
-* Shadcn UI
-* TanStack Table
-* TanStack Query
-* React Router
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Shadcn UI
+- TanStack Table
+- TanStack Query
+- React Router
 
 ### State & Data
 
-* TanStack Query
-* Axios
+- TanStack Query
+- Axios
 
 ### UI Components
 
-* Lucide React
-* Radix UI
-* Framer Motion
+- Lucide React
+- Radix UI
+- Framer Motion
 
 ---
 
@@ -197,43 +169,19 @@ VITE_APP_NAME=Command Centre
 
 The dashboard follows enterprise software patterns inspired by:
 
-* Stripe Dashboard
-* Shopify Admin
-* GitHub Enterprise
-* Vercel Dashboard
-* Linear
+- Stripe Dashboard
+- Shopify Admin
+- GitHub Enterprise
+- Vercel Dashboard
+- Linear
 
-Core principles:
+### Core Principles
 
-* Simplicity
-* Consistency
-* Scalability
-* Performance
-* Data-First Design
-
----
-
-## Current Status
-
-### Completed
-
-* Application Management
-* Products Management
-* Categories Management
-* Images Management
-* Reviews Management
-* Search
-* Filtering
-* Sorting
-* Pagination
-* Responsive Layout
-
-### In Progress
-
-* Orders Management
-* Monitoring Dashboard
-* Analytics
-* Notifications
+- Simplicity
+- Consistency
+- Scalability
+- Performance
+- Data-First Design
 
 ---
 
