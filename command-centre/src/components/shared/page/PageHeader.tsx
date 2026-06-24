@@ -1,12 +1,21 @@
+import { badgeVariants, type BadgeColor } from "@/lib/badge-variants";
 import { motion } from "framer-motion";
 
 interface PageHeaderProps {
   title: string;
   description?: string;
-  badge?: string;
+  badgeName?: string;
+  badgeColor?: BadgeColor;
+  badgeEmoji?: string;
 }
 
-function PageHeader({ title, description, badge }: PageHeaderProps) {
+function PageHeader({
+  title,
+  description,
+  badgeName,
+  badgeColor = "mart",
+  badgeEmoji,
+}: PageHeaderProps) {
   return (
     <motion.div
       initial={{
@@ -24,52 +33,55 @@ function PageHeader({ title, description, badge }: PageHeaderProps) {
       <div className="flex flex-wrap items-center gap-3">
         <h1
           className="
-            text-2xl
-            font-bold
-            tracking-tight
-
             bg-gradient-to-r
             from-blue-600
             via-sky-500
             to-amber-500
-
             bg-clip-text
+            text-2xl
+            font-bold
+            tracking-tight
             text-transparent
           "
         >
           {title}
         </h1>
 
-        {badge && (
+        {badgeName && (
           <span
-            className="
-              rounded-md
-              bg-blue-100
-              px-3
-              py-1
-              text-xs
-              font-semibold
-              text-blue-700
-            "
+            className={`
+             ml-2
+            inline-flex
+            items-center
+            gap-1.5
+            rounded-md
+            px-3
+            py-1
+            text-xs
+            font-semibold
+            shadow-sm
+              ${badgeVariants[badgeColor]}
+            `}
           >
-            {description}
+            {badgeEmoji && <span>{badgeEmoji}</span>}
+
+            <span>{badgeName}</span>
           </span>
         )}
       </div>
 
-      {/* {description && (
+      {description && (
         <p
           className="
             mt-2
             max-w-3xl
-
             text-sm
             text-muted-foreground
           "
         >
           {description}
         </p>
-      )} */}
+      )}
     </motion.div>
   );
 }
