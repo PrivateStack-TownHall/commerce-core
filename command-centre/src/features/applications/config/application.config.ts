@@ -5,7 +5,8 @@ const getApp = (id: string) => APPLICATIONS.find((app) => app.id === id)!;
 export const APPLICATION_CONFIG = {
   "kings-brew": {
     app: getApp("kings-brew"),
-
+    emoji: "☕",
+    color: "coffee",
     entityName: "Coffee",
     entityPluralName: "Coffees",
 
@@ -20,9 +21,10 @@ export const APPLICATION_CONFIG = {
 
   "castle-kitchen": {
     app: getApp("castle-kitchen"),
-
-    entityName: "Steak",
-    entityPluralName: "Steaks",
+    emoji: "🥩",
+    color: "restaurant",
+    entityName: "Menu",
+    entityPluralName: "Menu",
 
     endpoints: {
       entities: "/menu",
@@ -35,7 +37,8 @@ export const APPLICATION_CONFIG = {
 
   "byte-burger": {
     app: getApp("byte-burger"),
-
+    emoji: "🍔",
+    color: "burger",
     entityName: "Burger",
     entityPluralName: "Burgers",
 
@@ -50,9 +53,10 @@ export const APPLICATION_CONFIG = {
 
   "quantum-mart": {
     app: getApp("quantum-mart"),
-
-    entityName: "Product",
-    entityPluralName: "Products",
+    emoji: "🛒",
+    color: "mart",
+    entityName: "Inventory",
+    entityPluralName: "Inventory",
 
     endpoints: {
       entities: "/inventory",
@@ -65,9 +69,10 @@ export const APPLICATION_CONFIG = {
 
   "trade-hub": {
     app: getApp("trade-hub"),
-
-    entityName: "Product",
-    entityPluralName: "Products",
+    emoji: "🏪",
+    color: "ecommerce",
+    entityName: "Catalog",
+    entityPluralName: "Catalog",
 
     endpoints: {
       entities: "/catalog",
@@ -80,7 +85,8 @@ export const APPLICATION_CONFIG = {
 
   "pineapple-stack": {
     app: getApp("pineapple-stack"),
-
+    emoji: "🍍",
+    color: "pineapple",
     entityName: "Thread",
     entityPluralName: "Threads",
 
@@ -95,7 +101,8 @@ export const APPLICATION_CONFIG = {
 
   "m-ployee": {
     app: getApp("m-ployee"),
-
+    emoji: "👨‍💼",
+    color: "employee",
     entityName: "Employee",
     entityPluralName: "Employees",
 
@@ -110,7 +117,8 @@ export const APPLICATION_CONFIG = {
 
   codigram: {
     app: getApp("codigram"),
-
+    emoji: "📸",
+    color: "pink",
     entityName: "Post",
     entityPluralName: "Posts",
 
@@ -125,7 +133,8 @@ export const APPLICATION_CONFIG = {
 
   "medieval-airbnb": {
     app: getApp("medieval-airbnb"),
-
+    emoji: "🏡",
+    color: "medieval",
     entityName: "Property",
     entityPluralName: "Properties",
 
@@ -140,7 +149,8 @@ export const APPLICATION_CONFIG = {
 
   "leather-shelf": {
     app: getApp("leather-shelf"),
-
+    emoji: "📚",
+    color: "leather",
     entityName: "Book",
     entityPluralName: "Books",
 

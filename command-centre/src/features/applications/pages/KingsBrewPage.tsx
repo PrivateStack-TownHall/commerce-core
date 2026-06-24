@@ -51,24 +51,16 @@ function KingsBrewPage() {
   });
 
   const categoriesQuery = useApplicationCategories("kings-brew");
-
   const imagesQuery = useApplicationImages("kings-brew");
-
   const reviewsQuery = useApplicationReviews("kings-brew");
-
   const entities = entitiesQuery.data?.data ?? [];
-
   const categories = categoriesQuery.data ?? [];
-
   const images = imagesQuery.data ?? [];
-
   const reviews = reviewsQuery.data ?? [];
-
   const paginatedCategories = categories.slice(
     (categoriesPage - 1) * ITEMS_PER_PAGE,
     categoriesPage * ITEMS_PER_PAGE,
   );
-
   const paginatedImages = images.slice(
     (imagesPage - 1) * ITEMS_PER_PAGE,
     imagesPage * ITEMS_PER_PAGE,
@@ -94,7 +86,9 @@ function KingsBrewPage() {
           <PageHeader
             title={config.app.name}
             description={config.app.description}
-            badge={config.entityName}
+            badgeName={config.entityName}
+            badgeColor={config.color ?? "mart"}
+            badgeEmoji={config.emoji}
           />
 
           <div className="shrink-0">
