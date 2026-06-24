@@ -33,8 +33,8 @@ export const APPLICATIONS: Application[] = [
     color: "#8B5E3C",
     description: "Coffee Ordering Platform",
     path: "/applications/kings-brew",
-    // url: "https://kings-brew.onrender.com",
-    url: "http://localhost:3000",
+    url: "https://kings-brew.onrender.com",
+    // url: "http://localhost:3000",
   },
 
   {

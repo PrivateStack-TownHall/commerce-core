@@ -1,60 +1,52 @@
-import type { ColumnDef } from "@tanstack/react-table";
+import PageHeader from "@/components/shared/page/PageHeader";
 
-import PageHeader from "@/components/shared/PageHeader";
-import DataTableWrapper from "@/components/shared/DataTableWrapper";
-import StatusBadge from "@/components/shared/StatusBadge";
+import { services } from "../data/data";
 
-interface Service {
-  name: string;
-  status: "online" | "offline" | "warning" | "maintenance";
-}
+import { useAuditLogs } from "../hooks/useAuditLogs";
 
-const data: Service[] = [
-  {
-    name: "Kings Brew",
-    status: "online",
-  },
-  {
-    name: "Castle Kitchen",
-    status: "online",
-  },
-  {
-    name: "Trade Hub",
-    status: "warning",
-  },
-  {
-    name: "Byte Burger",
-    status: "offline",
-  },
-  {
-    name: "Quantum Mart",
-    status: "online",
-  },
-];
-
-const columns: ColumnDef<Service>[] = [
-  {
-    accessorKey: "name",
-    header: "Application",
-  },
-
-  {
-    accessorKey: "status",
-    header: "Status",
-
-    cell: ({ row }) => <StatusBadge status={row.original.status} />,
-  },
-];
+import MonitoringStats from "../components/MonitoringStats";
+import AuditLogsCard from "../components/AuditLogsCard";
+import ServiceHealthCard from "../components/ServiceHealthCard";
+import InfrastructureCard from "../components/InfrastructureCard";
 
 function MonitoringPage() {
+  const { data, isLoading } = useAuditLogs();
+
+  const onlineCount = services.filter(
+    (service) => service.status === "online",
+  ).length;
+
+  const warningCount = services.filter(
+    (service) => service.status === "warning",
+  ).length;
+
+  const offlineCount = services.filter(
+    (service) => service.status === "offline",
+  ).length;
+
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
-        title="Monitoring"
-        description="Monitor all Commerce Core services and application health."
+        title="Monitoring Command Centre"
+        description="Real-time monitoring, application health status, audit logs, and infrastructure overview."
       />
 
-      <DataTableWrapper columns={columns} data={data} />
+      <MonitoringStats
+        total={services.length}
+        online={onlineCount}
+        warning={warningCount}
+        offline={offlineCount}
+      />
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <AuditLogsCard logs={data?.data ?? []} isLoading={isLoading} />
+
+        <div className="space-y-6">
+          <ServiceHealthCard data={services} />
+
+          <InfrastructureCard />
+        </div>
+      </div>
     </div>
   );
 }
