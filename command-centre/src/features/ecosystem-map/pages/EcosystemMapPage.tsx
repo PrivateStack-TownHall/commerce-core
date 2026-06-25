@@ -1,7 +1,7 @@
 import React from "react";
 
-function EcosystemMapPage() {
-  return <div>EcosystemMapPage</div>;
+function ProductsPage() {
+  return <div>ProductsPage</div>;
 }
 
-export default EcosystemMapPage;
+export default ProductsPage;
