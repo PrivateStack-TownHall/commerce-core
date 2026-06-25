@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import AppLayout from "@/layouts/AppLayout";
 
-import DashboardPage from "@/features/dashboard/pages/DashboardPage";
+import CommandCentrePage from "@/features/dashboard/pages/CommandCentrePage";
 
 import ApplicationsPage from "@/features/applications/pages/KingsBrewPage";
 
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path: PATHS.DASHBOARD,
-        element: <DashboardPage />,
+        path: PATHS.COMMANDCENTRE,
+        element: <CommandCentrePage />,
       },
 
       {

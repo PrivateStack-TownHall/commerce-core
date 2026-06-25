@@ -1,5 +1,5 @@
 export const PATHS = {
-  DASHBOARD: "/",
+  COMMANDCENTRE: "/",
 
   APPLICATIONS: "/applications",
 
