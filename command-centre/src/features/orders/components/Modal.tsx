@@ -1,4 +1,4 @@
-import { BadgeCheck, ShoppingBag } from "lucide-react";
+import { BadgeCheck, Clock3, Package, ShoppingBag } from "lucide-react";
 
 import {
   Dialog,
@@ -22,126 +22,150 @@ interface ModalProps {
 }
 
 function Modal({ open, onOpenChange, order }: ModalProps) {
+  const statusConfig = {
+    PENDING: {
+      badge: "bg-amber-100 text-amber-700 border border-amber-200",
+      gradient: "from-amber-50 via-yellow-50 to-white",
+      icon: Clock3,
+    },
+
+    PAID: {
+      badge: "bg-emerald-100 text-emerald-700 border border-emerald-200",
+      gradient: "from-emerald-50 via-green-50 to-white",
+      icon: BadgeCheck,
+    },
+
+    PROCESSING: {
+      badge: "bg-violet-100 text-violet-700 border border-violet-200",
+      gradient: "from-violet-50 via-purple-50 to-white",
+      icon: Package,
+    },
+
+    COMPLETED: {
+      badge: "bg-sky-100 text-sky-700 border border-sky-200",
+      gradient: "from-sky-50 via-cyan-50 to-white",
+      icon: BadgeCheck,
+    },
+
+    CANCELLED: {
+      badge: "bg-red-100 text-red-700 border border-red-200",
+      gradient: "from-red-50 via-rose-50 to-white",
+      icon: Clock3,
+    },
+  }[order.status];
+
+  const StatusIcon = statusConfig.icon;
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className="
-          max-h-[92vh]
-          max-w-7xl
-          overflow-y-auto
-          rounded-3xl
-          border-0
+          h-[92vh]
+          w-[96vw]
+          max-w-[1200px]
+          overflow-hidden
+          rounded-xl
+          border
           p-0
           shadow-2xl
         "
       >
-        <div
-          className="
-            overflow-hidden
-            rounded-3xl
-            bg-white
-          "
-        >
+        <div className="flex h-full flex-col bg-white">
           <div
-            className="
-              relative
-              overflow-hidden
+            className={`
+              border-b
+              border-slate-200
               bg-gradient-to-r
-              from-primary
-              via-primary
-              to-primary/90
+              ${statusConfig.gradient}
               px-8
-              py-8
-              text-white
-            "
+              py-6
+            `}
           >
-            <div
-              className="
-                absolute
-                -right-20
-                -top-20
-                h-72
-                w-72
-                rounded-full
-                bg-white/10
-              "
-            />
-
-            <div
-              className="
-                absolute
-                -bottom-16
-                left-1/2
-                h-56
-                w-56
-                rounded-full
-                bg-white/5
-              "
-            />
-
-            <DialogHeader className="relative z-10">
-              <div className="flex items-start justify-between">
+            <DialogHeader>
+              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-5">
                   <div
                     className="
                       flex
-                      h-16
-                      w-16
+                      h-14
+                      w-14
                       items-center
                       justify-center
-                      rounded-2xl
-                      bg-white/20
-                      backdrop-blur
+                      rounded-xl
+                      bg-white
+                      shadow-sm
                     "
                   >
-                    <ShoppingBag className="h-8 w-8" />
+                    <ShoppingBag className="h-7 w-7 text-primary" />
                   </div>
 
                   <div>
-                    <DialogTitle className="text-3xl font-bold">
+                    <DialogTitle className="text-3xl font-bold text-slate-900">
                       {order.orderNumber}
                     </DialogTitle>
 
-                    <p className="mt-2">Customer Order Details</p>
+                    <p className="mt-1 text-sm text-slate-500">
+                      Customer Order Details
+                    </p>
                   </div>
                 </div>
 
                 <div
-                  className="
+                  className={`
                     flex
                     items-center
                     gap-2
                     rounded-full
-                    border
-                    border-white/20
-                    bg-white/15
                     px-4
                     py-2
-                    backdrop-blur
-                  "
+                    text-sm
+                    font-semibold
+                    ${statusConfig.badge}
+                  `}
                 >
-                  <BadgeCheck className="h-5 w-5" />
+                  <StatusIcon className="h-4 w-4" />
 
-                  <span className="font-semibold">{order.status}</span>
+                  <span>{order.status}</span>
                 </div>
               </div>
             </DialogHeader>
           </div>
 
-          <div className="grid gap-6 p-8 xl:grid-cols-1">
-            <div className="space-y-6">
-              <CustomerCard order={order} />
+          <div className="flex flex-1 overflow-hidden">
+            <aside
+              className="
+                w-[380px]
+                shrink-0
+                overflow-y-auto
+                border-r
+                border-slate-200
+                bg-slate-50/70
+                p-6
+              "
+            >
+              <div className="space-y-6">
+                <CustomerCard order={order} />
 
-              <PaymentCard order={order} />
+                <PaymentCard order={order} />
 
-              <SummaryCard order={order} />
-            </div>
+                <SummaryCard order={order} />
+              </div>
+            </aside>
 
-            <div className="space-y-6">
-              <OrderItemsCard order={order} />
+            <main
+              className="
+                flex-1
+                overflow-y-auto
+                bg-white
+                p-8
+              "
+            >
+              <div className="space-y-6">
+                <OrderItemsCard order={order} />
 
-              <Timeline histories={order.histories} />
-            </div>
+                <Timeline histories={order.histories} />
+              </div>
+            </main>
           </div>
         </div>
       </DialogContent>
