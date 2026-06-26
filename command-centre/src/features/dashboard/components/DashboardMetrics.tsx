@@ -1,29 +1,62 @@
 import { Activity, Clock3, Database, Server } from "lucide-react";
 
-function DashboardMetrics() {
+import type { CommandCentreApplication } from "../types/command-centre.type";
+
+interface DashboardMetricsProps {
+  applications: CommandCentreApplication[];
+}
+
+function DashboardMetrics({ applications }: DashboardMetricsProps) {
+  const healthyApps = applications.filter(
+    (app) =>
+      app.health?.status === "UP" &&
+      app.monitoring?.database.status === "CONNECTED",
+  ).length;
+
+  const averageLatency =
+    applications.length > 0
+      ? Math.round(
+          applications.reduce(
+            (sum, app) => sum + (app.monitoring?.database.latency ?? 0),
+            0,
+          ) / applications.length,
+        )
+      : 0;
+
+  const latestSync = applications
+    .map((app) => app.monitoring?.response.generatedAt)
+    .filter(Boolean)
+    .sort()
+    .reverse()[0];
+
   const metrics = [
     {
       title: "Last Sync",
-      value: "2 sec",
+      value: latestSync
+        ? new Date(latestSync).toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        : "-",
       icon: Clock3,
       color: "text-blue-600 bg-blue-50",
     },
     {
       title: "Healthy Apps",
-      value: "5 / 5",
+      value: `${healthyApps} / ${applications.length}`,
       icon: Activity,
       color: "text-emerald-600 bg-emerald-50",
     },
     {
-      title: "API Status",
-      value: "Online",
-      icon: Server,
+      title: "Database",
+      value: `${averageLatency} ms`,
+      icon: Database,
       color: "text-violet-600 bg-violet-50",
     },
     {
-      title: "Data Sources",
-      value: "20",
-      icon: Database,
+      title: "Node Version",
+      value: applications[0]?.monitoring?.node.version ?? "-",
+      icon: Server,
       color: "text-amber-600 bg-amber-50",
     },
   ];
@@ -50,7 +83,12 @@ function DashboardMetrics() {
           >
             <div
               className={`
-                flex h-11 w-11 items-center justify-center rounded-xl
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
                 ${metric.color}
               `}
             >

@@ -1,12 +1,80 @@
-import { ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  Boxes,
+  FolderKanban,
+  ImageIcon,
+  MessageSquareText,
+  Package,
+  ShoppingCart,
+} from "lucide-react";
 
-import type { MetricCard } from "../types/metric-card.type";
+import type { CommandCentreApplication } from "../types/command-centre.type";
 
 interface DashboardCardsProps {
-  cards: MetricCard[];
+  applications: CommandCentreApplication[];
 }
 
-function DashboardCards({ cards }: DashboardCardsProps) {
+function DashboardCards({ applications }: DashboardCardsProps) {
+  const totalApplications = applications.length;
+
+  const totalProducts = applications.reduce(
+    (sum, app) => sum + (app.stats?.products.total ?? 0),
+    0,
+  );
+
+  const totalCategories = applications.reduce(
+    (sum, app) => sum + (app.stats?.categories.total ?? 0),
+    0,
+  );
+
+  const totalImages = applications.reduce(
+    (sum, app) => sum + (app.stats?.images.total ?? 0),
+    0,
+  );
+
+  const totalReviews = applications.reduce(
+    (sum, app) => sum + (app.stats?.reviews.total ?? 0),
+    0,
+  );
+
+  const totalOrders = applications.reduce(
+    (sum, app) => sum + (app.stats?.orders.total ?? 0),
+    0,
+  );
+
+  const cards = [
+    {
+      title: "Applications",
+      value: totalApplications,
+      icon: Boxes,
+    },
+    {
+      title: "Products",
+      value: totalProducts,
+      icon: Package,
+    },
+    {
+      title: "Categories",
+      value: totalCategories,
+      icon: FolderKanban,
+    },
+    {
+      title: "Images",
+      value: totalImages,
+      icon: ImageIcon,
+    },
+    {
+      title: "Reviews",
+      value: totalReviews,
+      icon: MessageSquareText,
+    },
+    {
+      title: "Orders",
+      value: totalOrders,
+      icon: ShoppingCart,
+    },
+  ];
+
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
       {cards.map((card) => {

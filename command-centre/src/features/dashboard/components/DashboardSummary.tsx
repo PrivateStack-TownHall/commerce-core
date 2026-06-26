@@ -7,13 +7,42 @@ import {
   ShoppingCart,
 } from "lucide-react";
 
-import type { DashboardSummary as DashboardSummaryType } from "../types/dashboard-summary.type";
+import type { CommandCentreApplication } from "../types/command-centre.type";
 
 interface DashboardSummaryProps {
-  summary: DashboardSummaryType;
+  applications: CommandCentreApplication[];
 }
 
-function DashboardSummary({ summary }: DashboardSummaryProps) {
+function DashboardSummary({ applications }: DashboardSummaryProps) {
+  const summary = {
+    totalApplications: applications.length,
+
+    totalProducts: applications.reduce(
+      (sum, app) => sum + (app.stats?.products.total ?? 0),
+      0,
+    ),
+
+    totalCategories: applications.reduce(
+      (sum, app) => sum + (app.stats?.categories.total ?? 0),
+      0,
+    ),
+
+    totalImages: applications.reduce(
+      (sum, app) => sum + (app.stats?.images.total ?? 0),
+      0,
+    ),
+
+    totalReviews: applications.reduce(
+      (sum, app) => sum + (app.stats?.reviews.total ?? 0),
+      0,
+    ),
+
+    totalOrders: applications.reduce(
+      (sum, app) => sum + (app.stats?.orders.total ?? 0),
+      0,
+    ),
+  };
+
   const items = [
     {
       label: "Applications",
@@ -68,7 +97,7 @@ function DashboardSummary({ summary }: DashboardSummaryProps) {
         <h2 className="text-lg font-semibold">Ecosystem Summary</h2>
 
         <p className="text-sm text-slate-500">
-          Aggregated information across all applications.
+          Aggregated information across all connected applications.
         </p>
       </div>
 

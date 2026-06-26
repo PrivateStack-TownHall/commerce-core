@@ -1,56 +1,60 @@
-import { CheckCircle2, Clock3, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 
-import type { AuditLog } from "../types/audit-log.type";
+import type { CommandCentreApplication } from "../types/command-centre.type";
 
 interface AuditLogsProps {
-  logs: AuditLog[];
+  applications: CommandCentreApplication[];
 }
 
-function AuditLogs({ logs }: AuditLogsProps) {
+function AuditLogs({ applications }: AuditLogsProps) {
+  const logs = applications
+    .flatMap((app) =>
+      app.activities.map((activity) => ({
+        ...activity,
+        emoji: app.emoji,
+      })),
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
+    .slice(0, 10);
+
   return (
-    <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b border-slate-100 p-5">
+    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="mb-6 flex items-center gap-2">
+        <FileText className="h-5 w-5 text-primary" />
+
         <div>
-          <h2 className="text-lg font-semibold">Audit Logs</h2>
+          <h2 className="font-semibold">Audit Logs</h2>
 
           <p className="text-sm text-slate-500">
-            Latest activity across the ecosystem.
+            Latest system activities from all applications.
           </p>
-        </div>
-
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600">
-          <FileText className="h-5 w-5" />
         </div>
       </div>
 
-      <div className="divide-y divide-slate-100">
+      <div className="space-y-3">
         {logs.map((log) => (
           <div
             key={log.id}
-            className="flex items-start justify-between p-4 transition-colors hover:bg-slate-50"
+            className="flex items-start justify-between rounded-xl border border-slate-100 p-4"
           >
-            <div className="flex gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <CheckCircle2 className="h-5 w-5" />
-              </div>
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">{log.emoji}</div>
 
               <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{log.appEmoji}</span>
+                <h3 className="font-medium">{log.type}</h3>
 
-                  <h3 className="font-medium">{log.action}</h3>
-                </div>
+                <p className="text-sm text-slate-500">{log.application}</p>
 
-                <p className="mt-1 text-sm text-slate-600">{log.target}</p>
-
-                <p className="mt-1 text-xs text-slate-500">{log.appName}</p>
+                <p className="mt-1 text-sm text-slate-700">{log.description}</p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-slate-500">
-              <Clock3 className="h-3.5 w-3.5" />
-              {log.createdAt}
-            </div>
+            <span className="text-xs text-slate-400">
+              {new Date(log.createdAt).toLocaleString()}
+            </span>
           </div>
         ))}
       </div>

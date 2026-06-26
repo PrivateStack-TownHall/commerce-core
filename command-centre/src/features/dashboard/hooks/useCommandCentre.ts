@@ -6,7 +6,7 @@ export function useCommandCentre() {
   return useQuery({
     queryKey: ["command-centre"],
 
-    queryFn: commandCentreApi.getDashboard,
+    queryFn: () => commandCentreApi.getDashboard(),
 
     staleTime: 1000 * 60 * 5,
 

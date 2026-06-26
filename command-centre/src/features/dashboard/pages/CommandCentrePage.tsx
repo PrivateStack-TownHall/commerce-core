@@ -11,19 +11,22 @@ import LatestUpdates from "../components/LatestUpdates";
 import RecentOrders from "../components/RecentOrders";
 import RecentReviews from "../components/RecentReviews";
 
-import {
-  APPLICATIONS_OVERVIEW,
-  AUDIT_LOGS,
-  DASHBOARD_CARDS,
-  DASHBOARD_SUMMARY,
-  ECOSYSTEM_STATUS,
-  LAST_SYNCHRONIZATION,
-  LATEST_UPDATES,
-  RECENT_ORDERS,
-  RECENT_REVIEWS,
-} from "../constants/command-centre.constants";
+import { useCommandCentre } from "../hooks/useCommandCentre";
 
 function CommandCentrePage() {
+  const { data, isLoading } = useCommandCentre();
+
+  if (isLoading || !data) {
+    return (
+      <div className="space-y-6">
+        <PageHeader
+          title="Command Centre"
+          description="Unified visibility across the Entrepreneur Topics Ecosystem."
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -31,28 +34,31 @@ function CommandCentrePage() {
         description="Unified visibility across the Entrepreneur Topics Ecosystem."
       />
 
-      <DashboardCards cards={DASHBOARD_CARDS} />
+      <DashboardCards applications={data} />
 
-      <DashboardMetrics />
+      <DashboardMetrics applications={data} />
 
-      <DashboardSummary summary={DASHBOARD_SUMMARY} />
-
-      <div className="grid gap-6 xl:grid-cols-2">
-        <LatestUpdates updates={LATEST_UPDATES} />
-        <AuditLogs logs={AUDIT_LOGS} />
-      </div>
-
-      <ApplicationsOverview applications={APPLICATIONS_OVERVIEW} />
+      <DashboardSummary applications={data} />
 
       <div className="grid gap-6 xl:grid-cols-2">
-        <RecentOrders orders={RECENT_ORDERS} />
-        <RecentReviews reviews={RECENT_REVIEWS} />
+        <LatestUpdates applications={data} />
+
+        <AuditLogs applications={data} />
       </div>
 
-      {/* <div className="grid gap-6 xl:grid-cols-2">
-        <LastSynchronization items={LAST_SYNCHRONIZATION} />
-        <EcosystemStatus items={ECOSYSTEM_STATUS} />
-      </div> */}
+      <ApplicationsOverview applications={data} />
+
+      <div className="grid gap-6 xl:grid-cols-2">
+        <RecentOrders applications={data} />
+
+        <RecentReviews applications={data} />
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-2">
+        <LastSynchronization applications={data} />
+
+        <EcosystemStatus applications={data} />
+      </div>
     </div>
   );
 }

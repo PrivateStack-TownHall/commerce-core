@@ -1,39 +1,50 @@
-import { Clock3 } from "lucide-react";
+import { CheckCircle2, Clock3 } from "lucide-react";
 
-interface SyncItem {
-  application: string;
-  status: string;
-  updatedAt: string;
-}
+import type { CommandCentreApplication } from "../types/command-centre.type";
 
 interface LastSynchronizationProps {
-  items: SyncItem[];
+  applications: CommandCentreApplication[];
 }
 
-function LastSynchronization({ items }: LastSynchronizationProps) {
+function LastSynchronization({ applications }: LastSynchronizationProps) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="mb-6 flex items-center gap-2">
         <Clock3 className="h-5 w-5 text-primary" />
 
-        <h2 className="text-lg font-semibold">Last Synchronization</h2>
+        <div>
+          <h2 className="font-semibold">Last Synchronization</h2>
+
+          <p className="text-sm text-slate-500">
+            Latest synchronization status for every application.
+          </p>
+        </div>
       </div>
 
       <div className="space-y-3">
-        {items.map((item) => (
+        {applications.map((app) => (
           <div
-            key={item.application}
-            className="flex items-center justify-between rounded-lg border p-3"
+            key={app.id}
+            className="flex items-center justify-between rounded-xl border border-slate-100 p-4"
           >
-            <div>
-              <h3 className="font-medium">{item.application}</h3>
+            <div className="flex items-center gap-3">
+              <div className="text-2xl">{app.emoji}</div>
 
-              <p className="text-xs text-slate-500">{item.updatedAt}</p>
+              <div>
+                <p className="font-medium">{app.name}</p>
+
+                <p className="text-xs text-slate-500">
+                  {new Date(
+                    app.monitoring.response.generatedAt,
+                  ).toLocaleString()}
+                </p>
+              </div>
             </div>
 
-            <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">
-              {item.status}
-            </span>
+            <div className="flex items-center gap-2 text-emerald-600">
+              <CheckCircle2 className="h-5 w-5" />
+              <span className="text-sm font-medium">Synced</span>
+            </div>
           </div>
         ))}
       </div>

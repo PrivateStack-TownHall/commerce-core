@@ -1,57 +1,64 @@
-import { CreditCard, ShoppingBag } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
-interface RecentOrder {
-  id: string;
-  orderNumber: string;
-  customer: string;
-  application: string;
-  total: string;
-  status: string;
-}
+import type { CommandCentreApplication } from "../types/command-centre.type";
 
 interface RecentOrdersProps {
-  orders: RecentOrder[];
+  applications: CommandCentreApplication[];
 }
 
-function RecentOrders({ orders }: RecentOrdersProps) {
+function RecentOrders({ applications }: RecentOrdersProps) {
+  const orders = applications
+    .flatMap((app) =>
+      app.orders.map((order: any) => ({
+        ...order,
+        application: app.name,
+        emoji: app.emoji,
+      })),
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    )
+    .slice(0, 10);
+
   return (
-    <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b border-slate-100 p-5">
+    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="mb-6 flex items-center gap-2">
+        <ShoppingCart className="h-5 w-5 text-primary" />
+
         <div>
-          <h2 className="text-lg font-semibold">Recent Orders</h2>
+          <h2 className="font-semibold">Recent Orders</h2>
 
-          <p className="text-sm text-slate-500">
-            Latest customer transactions.
-          </p>
+          <p className="text-sm text-slate-500">Latest customer orders.</p>
         </div>
-
-        <ShoppingBag className="h-5 w-5 text-primary" />
       </div>
 
-      <div className="divide-y divide-slate-100">
-        {orders.map((order) => (
+      <div className="space-y-3">
+        {orders.map((order: any) => (
           <div
-            key={order.id}
-            className="flex items-center justify-between p-4 hover:bg-slate-50"
+            key={`${order.application}-${order.id}`}
+            className="flex items-center justify-between rounded-xl border border-slate-100 p-4"
           >
             <div className="flex items-center gap-3">
-              <div className="rounded-lg bg-emerald-50 p-2 text-emerald-600">
-                <CreditCard className="h-4 w-4" />
-              </div>
+              <div className="text-2xl">{order.emoji}</div>
 
               <div>
                 <h3 className="font-medium">{order.orderNumber}</h3>
 
-                <p className="text-sm text-slate-500">
-                  {order.customer} • {order.application}
-                </p>
+                <p className="text-sm text-slate-500">{order.application}</p>
+
+                <p className="text-xs text-slate-400">{order.status}</p>
               </div>
             </div>
 
             <div className="text-right">
-              <p className="font-semibold">{order.total}</p>
+              <p className="font-semibold">
+                Rp {Number(order.totalAmount).toLocaleString("id-ID")}
+              </p>
 
-              <p className="text-xs text-slate-500">{order.status}</p>
+              <p className="text-xs text-slate-400">
+                {new Date(order.createdAt).toLocaleString()}
+              </p>
             </div>
           </div>
         ))}
