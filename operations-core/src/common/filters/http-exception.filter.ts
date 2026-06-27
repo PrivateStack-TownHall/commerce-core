@@ -1,73 +1,53 @@
 import {
-   ArgumentsHost,
-   Catch,
-   ExceptionFilter,
-   HttpException,
-   HttpStatus,
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 
 import { Request, Response } from 'express';
 
 @Catch()
-export class HttpExceptionFilter
-   implements ExceptionFilter {
-   catch(
-      exception: unknown,
-      host: ArgumentsHost,
-   ) {
-      const ctx = host.switchToHttp();
+export class HttpExceptionFilter implements ExceptionFilter {
+  catch(exception: unknown, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
 
-      const response =
-         ctx.getResponse<Response>();
+    const request = ctx.getRequest<Request>();
+    const response = ctx.getResponse<Response>();
 
-      const request =
-         ctx.getRequest<Request>();
+    const status =
+      exception instanceof HttpException
+        ? exception.getStatus()
+        : HttpStatus.INTERNAL_SERVER_ERROR;
 
-      const status =
-         exception instanceof HttpException
-            ? exception.getStatus()
-            : HttpStatus.INTERNAL_SERVER_ERROR;
+    const exceptionResponse =
+      exception instanceof HttpException ? exception.getResponse() : null;
 
-      const exceptionResponse =
-         exception instanceof HttpException
-            ? exception.getResponse()
-            : null;
+    let message: string | string[] = 'Internal Server Error';
 
-      let message =
-         'Internal server error';
+    let errors: unknown = null;
 
-      let error = 'Error';
+    if (typeof exceptionResponse === 'string') {
+      message = exceptionResponse;
+    }
 
-      if (
-         typeof exceptionResponse ===
-         'string'
-      ) {
-         message = exceptionResponse;
-      }
+    if (typeof exceptionResponse === 'object' && exceptionResponse !== null) {
+      const error = exceptionResponse as Record<string, unknown>;
 
-      if (
-         typeof exceptionResponse ===
-         'object' &&
-         exceptionResponse
-      ) {
-         const res =
-            exceptionResponse as any;
+      message = (error.message as string | string[]) ?? message;
 
-         message =
-            res.message ?? message;
+      errors = error;
+    }
 
-         error =
-            res.error ?? error;
-      }
-
-      response.status(status).json({
-         success: false,
-         statusCode: status,
-         path: request.url,
-         timestamp:
-            new Date().toISOString(),
-         error,
-         message,
-      });
-   }
+    response.status(status).json({
+      success: false,
+      statusCode: status,
+      timestamp: new Date().toISOString(),
+      path: request.url,
+      method: request.method,
+      message,
+      errors,
+    });
+  }
 }

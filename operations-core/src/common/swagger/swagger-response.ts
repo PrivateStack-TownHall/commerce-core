@@ -1,134 +1,68 @@
 import {
-   applyDecorators,
-} from '@nestjs/common';
-
-import {
-   ApiBadRequestResponse,
-   ApiConflictResponse,
-   ApiCreatedResponse,
-   ApiForbiddenResponse,
-   ApiInternalServerErrorResponse,
-   ApiNotFoundResponse,
-   ApiOkResponse,
-   ApiUnauthorizedResponse,
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiConflictResponse,
+  ApiForbiddenResponse,
+  ApiInternalServerErrorResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
-export function SwaggerSuccess(
-   example: any,
-) {
-   return applyDecorators(
-      ApiOkResponse({
-         schema: {
-            example,
-         },
-      }),
-   );
+export interface SwaggerOptions {
+  summary: string;
+  description?: string;
+  bearer?: boolean;
 }
 
-export function SwaggerCreated(
-   example: any,
-) {
-   return applyDecorators(
-      ApiCreatedResponse({
-         schema: {
-            example,
-         },
-      }),
-   );
-}
+export function SwaggerResponse(options: SwaggerOptions): MethodDecorator {
+  const decorators: MethodDecorator[] = [
+    ApiOperation({
+      summary: options.summary,
+      description: options.description,
+    }),
 
-export function SwaggerBadRequest(
-   message = 'Bad Request',
-) {
-   return applyDecorators(
-      ApiBadRequestResponse({
-         schema: {
-            example: {
-               success: false,
-               statusCode: 400,
-               message,
-            },
-         },
-      }),
-   );
-}
+    ApiOkResponse({
+      description: 'Request successful.',
+    }),
 
-export function SwaggerUnauthorized(
-   message = 'Unauthorized',
-) {
-   return applyDecorators(
-      ApiUnauthorizedResponse({
-         schema: {
-            example: {
-               success: false,
-               statusCode: 401,
-               message,
-            },
-         },
-      }),
-   );
-}
+    ApiBadRequestResponse({
+      description: 'Bad request.',
+    }),
 
-export function SwaggerForbidden(
-   message = 'Forbidden',
-) {
-   return applyDecorators(
-      ApiForbiddenResponse({
-         schema: {
-            example: {
-               success: false,
-               statusCode: 403,
-               message,
-            },
-         },
-      }),
-   );
-}
+    ApiUnauthorizedResponse({
+      description: 'Unauthorized.',
+    }),
 
-export function SwaggerNotFound(
-   message = 'Resource not found',
-) {
-   return applyDecorators(
-      ApiNotFoundResponse({
-         schema: {
-            example: {
-               success: false,
-               statusCode: 404,
-               message,
-            },
-         },
-      }),
-   );
-}
+    ApiForbiddenResponse({
+      description: 'Forbidden.',
+    }),
 
-export function SwaggerConflict(
-   message = 'Conflict',
-) {
-   return applyDecorators(
-      ApiConflictResponse({
-         schema: {
-            example: {
-               success: false,
-               statusCode: 409,
-               message,
-            },
-         },
-      }),
-   );
-}
+    ApiNotFoundResponse({
+      description: 'Resource not found.',
+    }),
 
-export function SwaggerInternalServerError(
-   message = 'Internal Server Error',
-) {
-   return applyDecorators(
-      ApiInternalServerErrorResponse({
-         schema: {
-            example: {
-               success: false,
-               statusCode: 500,
-               message,
-            },
-         },
-      }),
-   );
+    ApiConflictResponse({
+      description: 'Conflict.',
+    }),
+
+    ApiInternalServerErrorResponse({
+      description: 'Internal server error.',
+    }),
+  ];
+
+  if (options.bearer) {
+    decorators.push(ApiBearerAuth());
+  }
+
+  return (
+    target: object,
+    propertyKey: string | symbol,
+    descriptor: PropertyDescriptor,
+  ) => {
+    decorators.forEach((decorator) =>
+      decorator(target, propertyKey, descriptor),
+    );
+  };
 }

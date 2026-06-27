@@ -6,9 +6,12 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): { message: string } {
-    return {
-      message: 'Ware Track API',
-    };
+  getHello() {
+    return this.appService.getHello();
+  }
+
+  @Get()
+  getHealth() {
+    return this.appService.getHealth();
   }
 }
